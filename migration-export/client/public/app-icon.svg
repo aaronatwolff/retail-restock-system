@@ -1,0 +1,30 @@
+<svg width="192" height="192" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="96" cy="96" r="96" fill="#2563eb"/>
+  
+  <!-- Main Container/Box -->
+  <rect x="48" y="60" width="96" height="72" rx="8" fill="#ffffff" opacity="0.9"/>
+  
+  <!-- Box Lines for depth -->
+  <rect x="52" y="64" width="88" height="64" rx="4" fill="none" stroke="#1d4ed8" stroke-width="2"/>
+  
+  <!-- Inventory Items (Stacked Rectangles) -->
+  <rect x="60" y="72" width="24" height="8" rx="2" fill="#059669"/>
+  <rect x="60" y="84" width="24" height="8" rx="2" fill="#dc2626"/>
+  <rect x="60" y="96" width="24" height="8" rx="2" fill="#d97706"/>
+  <rect x="60" y="108" width="24" height="8" rx="2" fill="#7c3aed"/>
+  
+  <!-- Plus/Add Symbol for Restocking -->
+  <circle cx="120" cy="88" r="16" fill="#10b981"/>
+  <rect x="116" y="80" width="8" height="16" rx="1" fill="#ffffff"/>
+  <rect x="112" y="84" width="16" height="8" rx="1" fill="#ffffff"/>
+  
+  <!-- Coffee Cup Icon (representing retail items) -->
+  <path d="M100 108 L108 108 L110 120 L98 120 Z" fill="#8b5cf6"/>
+  <ellipse cx="104" cy="108" rx="6" ry="2" fill="#a78bfa"/>
+  <rect x="108" y="110" width="4" height="6" rx="2" fill="#8b5cf6"/>
+  
+  <!-- Checkmark for completion -->
+  <circle cx="124" cy="116" r="8" fill="#059669"/>
+  <path d="M120 116 L122 118 L128 112" stroke="#ffffff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

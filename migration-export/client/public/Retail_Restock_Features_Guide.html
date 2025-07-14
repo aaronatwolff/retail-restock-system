@@ -1,0 +1,494 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Features Guide - Retail Restock</title>
+  <style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-size: 14px;
+  }
+  h1 {
+    color: #2563eb;
+    border-bottom: 3px solid #2563eb;
+    padding-bottom: 10px;
+    font-size: 28px;
+    margin-top: 0;
+  }
+  h2 {
+    color: #1d4ed8;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 5px;
+    margin-top: 30px;
+    font-size: 20px;
+    page-break-inside: avoid;
+  }
+  h3 {
+    color: #1e40af;
+    margin-top: 25px;
+    font-size: 16px;
+    page-break-inside: avoid;
+  }
+  h4 {
+    color: #3730a3;
+    margin-top: 20px;
+    font-size: 14px;
+  }
+  p {
+    margin: 10px 0;
+    text-align: justify;
+  }
+  ul, ol {
+    margin: 10px 0;
+    padding-left: 20px;
+  }
+  li {
+    margin: 5px 0;
+  }
+  strong {
+    color: #1f2937;
+  }
+  code {
+    background-color: #f3f4f6;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Monaco', 'Courier New', monospace;
+    font-size: 12px;
+    color: #dc2626;
+  }
+  pre {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 5px;
+    padding: 15px;
+    overflow-x: auto;
+    font-size: 12px;
+  }
+  blockquote {
+    border-left: 4px solid #2563eb;
+    margin: 15px 0;
+    padding-left: 15px;
+    color: #6b7280;
+    background-color: #f8fafc;
+    padding: 15px;
+    border-radius: 0 5px 5px 0;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 15px 0;
+    font-size: 12px;
+  }
+  th, td {
+    border: 1px solid #e5e7eb;
+    padding: 8px 12px;
+    text-align: left;
+  }
+  th {
+    background-color: #f9fafb;
+    font-weight: 600;
+    color: #374151;
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 40px;
+    border-bottom: 2px solid #2563eb;
+    padding-bottom: 20px;
+    page-break-inside: avoid;
+  }
+  .footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 12px;
+    color: #6b7280;
+    page-break-inside: avoid;
+  }
+  .toc {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    page-break-inside: avoid;
+  }
+  .toc h2 {
+    margin-top: 0;
+    color: #1e40af;
+    border-bottom: none;
+  }
+  .toc ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  .toc li {
+    margin: 8px 0;
+  }
+  .toc a {
+    text-decoration: none;
+    color: #2563eb;
+    padding: 5px 0;
+    display: block;
+  }
+  .toc a:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+  }
+  .print-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  .print-button:hover {
+    background-color: #1d4ed8;
+  }
+  
+  @media print {
+    body { 
+      font-size: 11px; 
+      margin: 0;
+      padding: 15px;
+    }
+    h1 { font-size: 20px; }
+    h2 { font-size: 16px; }
+    h3 { font-size: 14px; }
+    h4 { font-size: 12px; }
+    .print-button { display: none; }
+    .header { margin-bottom: 20px; }
+    .footer { margin-top: 20px; }
+    
+    /* Page break control */
+    h1, h2, h3 {
+      page-break-after: avoid;
+    }
+    
+    img {
+      max-width: 100% !important;
+      height: auto !important;
+    }
+    
+    /* Avoid breaking these elements */
+    blockquote, table, pre {
+      page-break-inside: avoid;
+    }
+    
+    /* Keep list items together */
+    li {
+      page-break-inside: avoid;
+    }
+  }
+  
+  @page {
+    margin: 20mm;
+    size: A4;
+  }
+</style>
+</head>
+<body>
+  <button class="print-button" onclick="window.print()">📄 Print/Save as PDF</button>
+  
+  <div class="header">
+    <h1>Features Guide</h1>
+    <p><strong>Retail Restock Application Documentation</strong></p>
+    <p>Generated: 23 June 2025</p>
+  </div>
+  
+  
+  
+  <div class="content">
+    <h1>Retail Restock - Features Guide</h1>
+<h2>Application Features Overview</h2>
+<h3>Mobile-First Design</h3>
+<ul>
+<li><strong>Responsive interface</strong> adapts to phones, tablets, and computers</li>
+<li><strong>Touch-friendly controls</strong> with large buttons and clear text</li>
+<li><strong>Optimised performance</strong> for mobile data connections</li>
+<li><strong>Portrait orientation</strong> ideal for one-handed use</li>
+</ul>
+<h3>Progressive Web App (PWA) Capabilities</h3>
+<ul>
+<li><strong>Home screen installation</strong> like a native app</li>
+<li><strong>Offline functionality</strong> for basic operations</li>
+<li><strong>Background sync</strong> when connection returns</li>
+<li><strong>Native app experience</strong> without app store downloads</li>
+</ul>
+<h3>Real-Time Data Integration</h3>
+<p><strong>Shopify Pricing:</strong></p>
+<ul>
+<li>Live retail price updates from Shopify system</li>
+<li>Accurate sales value calculations</li>
+<li>Current pricing for customer-facing decisions</li>
+<li>Automatic price tier selection</li>
+</ul>
+<p><strong>WOLFF32 Wholesale Pricing:</strong></p>
+<ul>
+<li>Live wholesale cost updates for ordering</li>
+<li>Accurate margin calculations</li>
+<li>Real-time cost analysis</li>
+<li>Supplier pricing transparency</li>
+</ul>
+<p><strong>Unleashed ERP Integration:</strong></p>
+<ul>
+<li>Direct order submission to warehouse</li>
+<li>Automatic customer account linking</li>
+<li>Real-time inventory updates</li>
+<li>Professional order numbering</li>
+</ul>
+<h3>Smart Inventory Logic</h3>
+<p><strong>Product Type Recognition:</strong></p>
+<ul>
+<li><strong>Coffee beans</strong> - Returned items logic</li>
+<li><strong>Consumables</strong> - Consumed items logic</li>
+<li><strong>Merchandise</strong> - Appropriate handling per type</li>
+<li><strong>Special products</strong> - Custom ordering rules</li>
+</ul>
+<p><strong>Cold Brew Intelligence:</strong></p>
+<ul>
+<li>Individual unit tracking (SKU 7081)</li>
+<li>Automatic multi-pack ordering (SKU 7084)</li>
+<li>Threshold-based reorder triggers</li>
+<li>Optimal inventory ratios</li>
+</ul>
+<p><strong>Par Level Management:</strong></p>
+<ul>
+<li>Venue-specific target levels</li>
+<li>Automatic reorder calculations</li>
+<li>Intelligent quantity suggestions</li>
+<li>Stock optimisation algorithms</li>
+</ul>
+<h3>Financial Accuracy</h3>
+<p><strong>Tax Handling:</strong></p>
+<ul>
+<li>Automatic 10% GST calculations</li>
+<li>Production-validated tax codes</li>
+<li>Compliant invoice generation</li>
+<li>Accurate financial reporting</li>
+</ul>
+<p><strong>Pricing Transparency:</strong></p>
+<ul>
+<li>Clear retail vs wholesale pricing</li>
+<li>Margin visibility for decision making</li>
+<li>Authentic pricing source indicators</li>
+<li>Real-time cost updates</li>
+</ul>
+<p><strong>Order Totals:</strong></p>
+<ul>
+<li>Line-by-line cost breakdown</li>
+<li>Tax-inclusive total calculations</li>
+<li>Venue-specific pricing</li>
+<li>Accurate financial tracking</li>
+</ul>
+<h3>User Experience Features</h3>
+<p><strong>Intuitive Navigation:</strong></p>
+<ul>
+<li>Progressive form design</li>
+<li>Clear step-by-step process</li>
+<li>Visual progress indicators</li>
+<li>Easy back/forward navigation</li>
+</ul>
+<p><strong>Error Prevention:</strong></p>
+<ul>
+<li>Input validation and limits</li>
+<li>Clear error messages</li>
+<li>Guided correction process</li>
+<li>Automatic retry logic</li>
+</ul>
+<p><strong>Visual Feedback:</strong></p>
+<ul>
+<li>Real-time calculation updates</li>
+<li>Pricing source indicators</li>
+<li>Order status confirmation</li>
+<li>Success/error notifications</li>
+</ul>
+<h3>Security and Compliance</h3>
+<p><strong>Data Protection:</strong></p>
+<ul>
+<li>Secure API connections</li>
+<li>Encrypted data transmission</li>
+<li>No sensitive data storage</li>
+<li>Regular security updates</li>
+</ul>
+<p><strong>Audit Trail:</strong></p>
+<ul>
+<li>User action logging</li>
+<li>Order history tracking</li>
+<li>Change documentation</li>
+<li>Compliance reporting</li>
+</ul>
+<p><strong>Access Control:</strong></p>
+<ul>
+<li>User identification system</li>
+<li>Venue-specific access</li>
+<li>Role-based permissions</li>
+<li>Activity monitoring</li>
+</ul>
+<h3>Performance Optimisation</h3>
+<p><strong>Fast Loading:</strong></p>
+<ul>
+<li>Efficient data caching</li>
+<li>Optimised image delivery</li>
+<li>Minimal resource usage</li>
+<li>Quick startup times</li>
+</ul>
+<p><strong>Reliable Operation:</strong></p>
+<ul>
+<li>Robust error handling</li>
+<li>Automatic retry mechanisms</li>
+<li>Graceful degradation</li>
+<li>Consistent performance</li>
+</ul>
+<p><strong>Scalable Architecture:</strong></p>
+<ul>
+<li>Multi-venue support</li>
+<li>Concurrent user handling</li>
+<li>High availability design</li>
+<li>Future expansion ready</li>
+</ul>
+<h2>Technical Specifications</h2>
+<h3>Supported Devices</h3>
+<ul>
+<li><strong>Smartphones</strong> - iPhone 12+ / Android 8+</li>
+<li><strong>Tablets</strong> - iPad Air+ / Android tablets</li>
+<li><strong>Computers</strong> - Chrome, Safari, Edge browsers</li>
+<li><strong>Screen sizes</strong> - 320px to 4K displays</li>
+</ul>
+<h3>Network Requirements</h3>
+<ul>
+<li><strong>3G minimum</strong> for basic functionality</li>
+<li><strong>4G/WiFi recommended</strong> for optimal performance</li>
+<li><strong>Offline mode</strong> for viewing cached data</li>
+<li><strong>Auto-sync</strong> when connection restored</li>
+</ul>
+<h3>Browser Compatibility</h3>
+<ul>
+<li><strong>Chrome</strong> - Fully supported (recommended)</li>
+<li><strong>Safari</strong> - Fully supported</li>
+<li><strong>Edge</strong> - Fully supported</li>
+<li><strong>Firefox</strong> - Basic functionality</li>
+</ul>
+<h3>Data Usage</h3>
+<ul>
+<li><strong>Initial load</strong> - ~2MB download</li>
+<li><strong>Regular use</strong> - ~50KB per session</li>
+<li><strong>Offline mode</strong> - Minimal data usage</li>
+<li><strong>Image assets</strong> - Optimised for mobile</li>
+</ul>
+<h2>Integration Details</h2>
+<h3>Unleashed ERP System</h3>
+<ul>
+<li><strong>Real-time product lookup</strong> from master catalogue</li>
+<li><strong>Customer account verification</strong> and linking</li>
+<li><strong>Warehouse integration</strong> for delivery coordination</li>
+<li><strong>Invoice generation</strong> with proper tax handling</li>
+<li><strong>Order tracking</strong> throughout fulfillment process</li>
+</ul>
+<h3>Shopify E-commerce Platform</h3>
+<ul>
+<li><strong>Live retail pricing</strong> from active store</li>
+<li><strong>Product availability</strong> checking</li>
+<li><strong>Sales performance</strong> data integration</li>
+<li><strong>Customer pricing tiers</strong> appropriate selection</li>
+<li><strong>Inventory synchronisation</strong> where applicable</li>
+</ul>
+<h3>Financial Systems</h3>
+<ul>
+<li><strong>GST compliance</strong> with automatic calculations</li>
+<li><strong>Multi-venue accounting</strong> with proper allocation</li>
+<li><strong>Cost centre tracking</strong> per location</li>
+<li><strong>Profit margin analysis</strong> capabilities</li>
+<li><strong>Financial reporting</strong> integration ready</li>
+</ul>
+<h2>Customisation Options</h2>
+<h3>Venue Configuration</h3>
+<ul>
+<li><strong>Product range</strong> customisation per location</li>
+<li><strong>Par level</strong> adjustment based on sales patterns</li>
+<li><strong>Pricing tier</strong> selection per venue type</li>
+<li><strong>Delivery schedule</strong> coordination</li>
+<li><strong>Special requirements</strong> handling</li>
+</ul>
+<h3>User Preferences</h3>
+<ul>
+<li><strong>Display options</strong> for different screen sizes</li>
+<li><strong>Notification settings</strong> for order confirmations</li>
+<li><strong>Default venues</strong> for regular users</li>
+<li><strong>Quick actions</strong> for frequent tasks</li>
+<li><strong>Accessibility features</strong> as required</li>
+</ul>
+<h3>Business Rules</h3>
+<ul>
+<li><strong>Reorder thresholds</strong> adjustable per product</li>
+<li><strong>Minimum order quantities</strong> configurable</li>
+<li><strong>Special product handling</strong> customisable</li>
+<li><strong>Approval workflows</strong> if required</li>
+<li><strong>Escalation procedures</strong> for unusual orders</li>
+</ul>
+<h2>Future Enhancements</h2>
+<h3>Planned Features</h3>
+<ul>
+<li><strong>Barcode scanning</strong> for faster inventory counting</li>
+<li><strong>Voice input</strong> for hands-free operation</li>
+<li><strong>Photo documentation</strong> for quality issues</li>
+<li><strong>Predictive ordering</strong> based on historical data</li>
+<li><strong>Multi-language support</strong> for diverse teams</li>
+</ul>
+<h3>Integration Expansions</h3>
+<ul>
+<li><strong>Delivery tracking</strong> integration</li>
+<li><strong>Supplier direct ordering</strong> for special items</li>
+<li><strong>Customer feedback</strong> collection</li>
+<li><strong>Quality management</strong> system integration</li>
+<li><strong>Performance analytics</strong> dashboard</li>
+</ul>
+<h3>Advanced Capabilities</h3>
+<ul>
+<li><strong>Machine learning</strong> for demand forecasting</li>
+<li><strong>Automated reordering</strong> for routine items</li>
+<li><strong>Supply chain optimisation</strong> recommendations</li>
+<li><strong>Seasonal adjustment</strong> algorithms</li>
+<li><strong>Cross-venue</strong> inventory sharing</li>
+</ul>
+<hr>
+<p><em>This features guide provides technical details for users interested in the application&#39;s capabilities and architecture. For basic usage instructions, refer to the Training Guide.</em></p>
+
+  </div>
+  
+  <div class="footer">
+    <p><strong>Retail Restock System Documentation</strong></p>
+    <p>© 2025 | For internal use only | Generated from Markdown sources</p>
+    <p><em>To save as PDF: Use your browser's Print function and select "Save as PDF"</em></p>
+  </div>
+  
+  <script>
+    // Auto-print functionality for easy PDF generation
+    function printDocument() {
+      window.print();
+    }
+    
+    // Add keyboard shortcut for printing
+    document.addEventListener('keydown', function(e) {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+        e.preventDefault();
+        printDocument();
+      }
+    });
+  </script>
+</body>
+</html>

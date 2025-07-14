@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retail Restock System</title>
+  <meta http-equiv="refresh" content="0; url=/preview-fix.html">
+  <style>
+    body { 
+      margin: 0; 
+      font-family: system-ui, sans-serif; 
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white; 
+      text-align: center; 
+      padding: 100px 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .loader {
+      width: 60px;
+      height: 60px;
+      border: 4px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+      margin-bottom: 30px;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    .link {
+      color: white;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="loader"></div>
+  <h1>Loading Retail Restock System...</h1>
+  <p>Redirecting to application...</p>
+  <p style="margin-top: 30px;">
+    If you're not redirected automatically, 
+    <a href="/preview-fix.html" class="link">click here</a>
+  </p>
+  
+  <script>
+    console.log('Index.html loading - redirecting to preview-fix.html');
+    
+    // Multiple redirect attempts for reliability
+    setTimeout(() => {
+      console.log('Attempting redirect...');
+      window.location.replace('/preview-fix.html');
+    }, 1000);
+    
+    // Fallback redirect
+    setTimeout(() => {
+      if (window.location.pathname === '/') {
+        console.log('Fallback redirect triggered');
+        window.location.href = '/preview-fix.html';
+      }
+    }, 3000);
+  </script>
+</body>
+</html>

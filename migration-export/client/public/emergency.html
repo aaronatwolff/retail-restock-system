@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Retail Restock System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { 
+      margin: 0; 
+      font-family: Arial, sans-serif; 
+      background: #667eea; 
+      color: white; 
+      text-align: center; 
+      padding: 50px 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    h1 { font-size: 48px; margin-bottom: 20px; }
+    p { font-size: 24px; margin: 10px 0; }
+    .links { margin-top: 40px; }
+    a { color: white; font-size: 20px; margin: 0 15px; }
+  </style>
+</head>
+<body>
+  <h1>RETAIL RESTOCK SYSTEM</h1>
+  <p>Emergency Preview Mode</p>
+  <div class="links">
+    <a href="/preview-fix.html">Full Application</a>
+    <a href="/api/health">Health Check</a>
+    <a href="/debug">Debug</a>
+  </div>
+  <script>
+    console.log('Emergency page loaded - Replit preview test');
+    setTimeout(() => window.location.href = '/preview-fix.html', 2000);
+  </script>
+</body>
+</html>

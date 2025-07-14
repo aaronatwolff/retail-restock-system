@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retail Restock System</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    
+    .app {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+    
+    .header {
+      background: #2c3e50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .content {
+      padding: 30px;
+    }
+    
+    .section {
+      margin-bottom: 30px;
+      padding: 20px;
+      border: 2px solid #e9ecef;
+      border-radius: 8px;
+    }
+    
+    .section h3 {
+      color: #2c3e50;
+      margin-bottom: 15px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #495057;
+    }
+    
+    select, input, button {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #ced4da;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    
+    button {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: transform 0.2s;
+    }
+    
+    button:hover {
+      transform: translateY(-2px);
+    }
+    
+    button:disabled {
+      background: #6c757d;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+    
+    .status-item {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 6px;
+      text-align: center;
+    }
+    
+    .status-value {
+      font-size: 24px;
+      font-weight: bold;
+      color: #28a745;
+    }
+    
+    .product-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      margin-bottom: 10px;
+      border: 2px solid #e9ecef;
+      border-radius: 6px;
+      background: #f8f9fa;
+    }
+    
+    .product-info h4 {
+      margin: 0 0 5px 0;
+      color: #2c3e50;
+    }
+    
+    .product-details {
+      font-size: 14px;
+      color: #6c757d;
+    }
+    
+    .quantity-input {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .quantity-input input {
+      width: 80px;
+      margin: 0;
+    }
+    
+    .hidden { display: none; }
+    
+    .success {
+      text-align: center;
+      padding: 40px;
+    }
+    
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      background: #28a745;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 40px;
+      color: white;
+    }
+
+    .sales-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      margin-bottom: 8px;
+      background: #e8f5e8;
+      border-radius: 6px;
+      border-left: 4px solid #28a745;
+    }
+
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      margin-bottom: 8px;
+      background: #fff3cd;
+      border-radius: 6px;
+      border-left: 4px solid #ffc107;
+    }
+
+    .price-display {
+      font-weight: bold;
+      color: #28a745;
+    }
+
+    .quantity-sold {
+      background: #28a745;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .reorder-badge {
+      background: #ffc107;
+      color: #856404;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="header">
+      <h1>Retail Restock System</h1>
+      <p>Inventory Management for Retail Venues</p>
+    </div>
+    
+    <div class="content">
+      <!-- Loading View -->
+      <div id="loading-view">
+        <div class="section">
+          <h3>Loading System...</h3>
+          <div style="width: 100%; height: 6px; background: #e9ecef; border-radius: 3px; overflow: hidden;">
+            <div id="progress" style="width: 0%; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); transition: width 0.3s;"></div>
+          </div>
+          <p style="margin-top: 10px; text-align: center;" id="loading-text">Initializing...</p>
+        </div>
+      </div>
+      
+      <!-- Setup View -->
+      <div id="setup-view" class="hidden">
+        <div class="section">
+          <h3>System Status</h3>
+          <div class="status-grid">
+            <div class="status-item">
+              <div>Database</div>
+              <div class="status-value" id="db-status">✓</div>
+            </div>
+            <div class="status-item">
+              <div>Users</div>
+              <div class="status-value" id="user-count">0</div>
+            </div>
+            <div class="status-item">
+              <div>Venues</div>
+              <div class="status-value" id="venue-count">0</div>
+            </div>
+            <div class="status-item">
+              <div>Products</div>
+              <div class="status-value">18</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="section">
+          <h3>Start New Session</h3>
+          <div class="form-group">
+            <label for="user-select">Team Member</label>
+            <select id="user-select">
+              <option value="">Select team member...</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="venue-select">Venue</label>
+            <select id="venue-select">
+              <option value="">Select venue...</option>
+            </select>
+          </div>
+          <button id="start-btn" disabled>Start Restock Session</button>
+        </div>
+      </div>
+      
+      <!-- Inventory View -->
+      <div id="inventory-view" class="hidden">
+        <div class="section">
+          <h3>Inventory Count</h3>
+          <p>Enter the remaining quantity for each product</p>
+          <div id="products-container"></div>
+          <div style="display: flex; gap: 15px; margin-top: 20px;">
+            <button id="back-btn" style="background: #6c757d;">Back</button>
+            <button id="complete-btn">Complete Session</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sales & Orders View -->
+      <div id="sales-view" class="hidden">
+        <div class="section">
+          <h3>📊 Weekly Items Sold</h3>
+          <p>Estimated sales based on inventory movement</p>
+          <div id="sold-items-container"></div>
+        </div>
+        
+        <div class="section">
+          <h3>📋 Items to Order</h3>
+          <p>Products below reorder threshold</p>
+          <div id="order-items-container"></div>
+          <div id="order-total" style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 6px; font-weight: bold;"></div>
+        </div>
+        
+        <div style="display: flex; gap: 15px; margin-top: 20px;">
+          <button id="back-to-inventory-btn" style="background: #6c757d;">Back to Inventory</button>
+          <button id="final-complete-btn">Complete & Save Session</button>
+        </div>
+      </div>
+      
+      <!-- Success View -->
+      <div id="success-view" class="hidden">
+        <div class="success">
+          <div id="success-message">
+            <div class="success-icon">✓</div>
+            <h2 style="color: #28a745; margin-bottom: 20px;">Session Complete!</h2>
+            <p style="margin-bottom: 30px; color: #6c757d;">Your restock data has been saved successfully.</p>
+          </div>
+          <button id="new-session-btn">Start New Session</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let state = {
+      users: [],
+      venues: [],
+      products: [],
+      selectedUser: '',
+      selectedVenue: '',
+      quantities: {}
+    };
+
+    // Utility functions
+    function showView(viewId) {
+      document.querySelectorAll('[id$="-view"]').forEach(el => el.classList.add('hidden'));
+      document.getElementById(viewId).classList.remove('hidden');
+    }
+
+    function updateProgress(percent, text) {
+      document.getElementById('progress').style.width = percent + '%';
+      document.getElementById('loading-text').textContent = text;
+    }
+
+    // Initialize application
+    async function init() {
+      try {
+        updateProgress(20, 'Loading users...');
+        const usersRes = await fetch('/api/users');
+        state.users = await usersRes.json();
+        
+        updateProgress(50, 'Loading venues...');
+        const venuesRes = await fetch('/api/venues');
+        state.venues = await venuesRes.json();
+        
+        updateProgress(80, 'Setting up interface...');
+        
+        // Populate dropdowns
+        const userSelect = document.getElementById('user-select');
+        state.users.forEach(user => {
+          const option = document.createElement('option');
+          option.value = user.id;
+          option.textContent = user.name;
+          userSelect.appendChild(option);
+        });
+        
+        const venueSelect = document.getElementById('venue-select');
+        state.venues.forEach(venue => {
+          const option = document.createElement('option');
+          option.value = venue.id;
+          option.textContent = venue.name;
+          venueSelect.appendChild(option);
+        });
+        
+        // Update status
+        document.getElementById('user-count').textContent = state.users.length;
+        document.getElementById('venue-count').textContent = state.venues.length;
+        
+        // Add event listeners
+        userSelect.addEventListener('change', updateStartButton);
+        venueSelect.addEventListener('change', updateStartButton);
+        document.getElementById('start-btn').addEventListener('click', startSession);
+        document.getElementById('back-btn').addEventListener('click', () => showView('setup-view'));
+        document.getElementById('complete-btn').addEventListener('click', showSalesAndOrders);
+        document.getElementById('back-to-inventory-btn').addEventListener('click', () => showView('inventory-view'));
+        document.getElementById('final-complete-btn').addEventListener('click', completeSession);
+        document.getElementById('new-session-btn').addEventListener('click', newSession);
+        
+        updateProgress(100, 'Ready!');
+        setTimeout(() => showView('setup-view'), 500);
+        
+      } catch (error) {
+        updateProgress(0, 'Error: ' + error.message);
+      }
+    }
+
+    function updateStartButton() {
+      const userVal = document.getElementById('user-select').value;
+      const venueVal = document.getElementById('venue-select').value;
+      const startBtn = document.getElementById('start-btn');
+      
+      if (userVal && venueVal) {
+        startBtn.disabled = false;
+        state.selectedUser = userVal;
+        state.selectedVenue = venueVal;
+      } else {
+        startBtn.disabled = true;
+      }
+    }
+
+    async function startSession() {
+      try {
+        const response = await fetch(`/api/venues/${state.selectedVenue}/products`);
+        state.products = await response.json();
+        
+        // Build products list
+        const container = document.getElementById('products-container');
+        container.innerHTML = '';
+        
+        state.products.forEach(product => {
+          const div = document.createElement('div');
+          div.className = 'product-item';
+          div.innerHTML = `
+            <div class="product-info">
+              <h4>${product.product.name}</h4>
+              <div class="product-details">Par: ${product.parLevel} | Code: ${product.product.code}</div>
+            </div>
+            <div class="quantity-input">
+              <label>Remaining:</label>
+              <input type="number" min="0" max="999" placeholder="0" data-product-id="${product.productId}">
+            </div>
+          `;
+          container.appendChild(div);
+        });
+        
+        // Add input listeners
+        container.querySelectorAll('input').forEach(input => {
+          input.addEventListener('change', (e) => {
+            const productId = e.target.dataset.productId;
+            state.quantities[productId] = parseInt(e.target.value) || 0;
+          });
+        });
+        
+        showView('inventory-view');
+        
+      } catch (error) {
+        alert('Error loading products: ' + error.message);
+      }
+    }
+
+    async function showSalesAndOrders() {
+      // Calculate sales and orders
+      const soldItems = [];
+      const orderItems = [];
+      let orderTotal = 0;
+      let salesTotal = 0;
+
+      for (const product of state.products) {
+        const remaining = state.quantities[product.productId] || 0;
+        const sold = Math.max(0, product.parLevel - remaining);
+        
+        // Add to sold items if any were sold
+        if (sold > 0) {
+          const price = await getShopifyPrice(product.product.code);
+          const lineTotal = sold * price;
+          soldItems.push({
+            ...product,
+            soldQuantity: sold,
+            price: price,
+            lineTotal: lineTotal
+          });
+          salesTotal += lineTotal;
+        }
+        
+        // Cold brew 7081 special reorder trigger rule: order when 1 or fewer remain
+        let shouldReorder = false;
+        let orderQuantity = 0;
+        
+        if (product.product.code === '7081') {
+          // Cold brew individual units - reorder when 1 or fewer remain
+          if (remaining <= 1) {
+            shouldReorder = true;
+            // Calculate 4-pack (7084) quantity needed
+            const unitsNeeded = product.parLevel - remaining;
+            orderQuantity = Math.ceil(unitsNeeded / 4); // Round up to nearest 4-pack
+          }
+        } else {
+          // Standard reorder logic for other products
+          orderQuantity = Math.max(0, product.parLevel - remaining);
+          shouldReorder = remaining <= product.reorderThreshold || orderQuantity > 0;
+        }
+        
+        if (shouldReorder && orderQuantity > 0) {
+          let orderCode = product.product.code;
+          let orderPrice = await getWolffPrice(orderCode);
+          
+          // For cold brew 7081, order 7084 4-packs instead
+          if (product.product.code === '7081') {
+            orderCode = '7084';
+            orderPrice = await getWolffPrice('7084');
+          }
+          
+          if (orderPrice > 0) {
+            const lineTotal = orderQuantity * orderPrice;
+            orderItems.push({
+              ...product,
+              orderQuantity: orderQuantity,
+              orderPrice: orderPrice,
+              orderCode: orderCode,
+              lineTotal: lineTotal,
+              specialNote: product.product.code === '7081' ? 'Ordering 7084 4-packs for 7081 units' : null
+            });
+            orderTotal += lineTotal;
+          }
+        }
+      }
+
+      // Display sold items
+      const soldContainer = document.getElementById('sold-items-container');
+      soldContainer.innerHTML = '';
+      
+      if (soldItems.length === 0) {
+        soldContainer.innerHTML = '<p style="color: #6c757d; font-style: italic;">No items sold this week</p>';
+      } else {
+        soldItems.forEach(item => {
+          const div = document.createElement('div');
+          div.className = 'sales-item';
+          div.innerHTML = `
+            <div>
+              <strong>${item.product.name}</strong>
+              <div style="font-size: 14px; color: #6c757d;">${item.product.code}</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span class="quantity-sold">${item.soldQuantity} sold</span>
+              <span class="price-display">$${item.lineTotal.toFixed(2)}</span>
+            </div>
+          `;
+          soldContainer.appendChild(div);
+        });
+        
+        // Add sales total
+        const totalDiv = document.createElement('div');
+        totalDiv.style.cssText = 'margin-top: 15px; padding: 15px; background: #d4edda; border: 2px solid #28a745; border-radius: 6px; font-weight: bold; text-align: center;';
+        totalDiv.innerHTML = `<strong>Total Weekly Sales: $${salesTotal.toFixed(2)}</strong>`;
+        soldContainer.appendChild(totalDiv);
+      }
+
+      // Display order items
+      const orderContainer = document.getElementById('order-items-container');
+      orderContainer.innerHTML = '';
+      
+      if (orderItems.length === 0) {
+        orderContainer.innerHTML = '<p style="color: #6c757d; font-style: italic;">No items need reordering</p>';
+      } else {
+        orderItems.forEach(item => {
+          const div = document.createElement('div');
+          div.className = 'order-item';
+          div.innerHTML = `
+            <div>
+              <strong>${item.product.name}</strong>
+              <div style="font-size: 14px; color: #6c757d;">
+                ${item.product.code}
+                ${item.specialNote ? `<br><em style="color: #856404;">${item.specialNote}</em>` : ''}
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span class="reorder-badge">${item.orderQuantity} ${item.orderCode !== item.product.code ? item.orderCode : 'needed'}</span>
+              <span class="price-display">$${item.lineTotal.toFixed(2)}</span>
+            </div>
+          `;
+          orderContainer.appendChild(div);
+        });
+      }
+
+      // Display order total
+      const totalElement = document.getElementById('order-total');
+      totalElement.innerHTML = `<strong>Total Order Value: $${orderTotal.toFixed(2)}</strong>`;
+
+      showView('sales-view');
+    }
+
+    async function getShopifyPrice(productCode) {
+      try {
+        const response = await fetch(`/api/products/${productCode}/shopify-price`);
+        if (response.ok) {
+          const data = await response.json();
+          return data.shopifyPrice || 0;
+        }
+      } catch (error) {
+        console.error('Error fetching Shopify price:', error);
+      }
+      return 0;
+    }
+
+    async function getWolffPrice(productCode) {
+      try {
+        const response = await fetch(`/api/products/${productCode}/wolff32-price`);
+        if (response.ok) {
+          const data = await response.json();
+          return data.wolff32Price || 0;
+        }
+      } catch (error) {
+        console.error('Error fetching WOLFF32 price:', error);
+      }
+      return 0;
+    }
+
+    async function completeSession() {
+      const sessionData = {
+        userId: parseInt(state.selectedUser),
+        venueId: parseInt(state.selectedVenue),
+        visitDate: new Date().toISOString().split('T')[0],
+        visitTime: new Date().toLocaleTimeString('en-AU', { hour12: false }),
+        itemsData: state.products.map(p => ({
+          productId: p.productId,
+          productCode: p.product.code,
+          productName: p.product.name,
+          productType: p.product.type,
+          productReturnType: p.product.returnType,
+          productPrice: p.product.price,
+          parLevel: p.parLevel,
+          quantity: state.quantities[p.productId] || 0,
+          soldQuantity: Math.max(0, p.parLevel - (state.quantities[p.productId] || 0)),
+          reorderThreshold: p.reorderThreshold
+        }))
+      };
+
+      try {
+        // Step 1: Create the restock session
+        const response = await fetch('/api/restock-sessions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(sessionData)
+        });
+        
+        if (!response.ok) {
+          throw new Error('Failed to save session');
+        }
+        
+        const session = await response.json();
+        console.log('Session created:', session.id);
+        
+        // Step 2: Submit to Unleashed for order creation
+        try {
+          const submitResponse = await fetch(`/api/restock-sessions/${session.id}/submit`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }
+          });
+          
+          if (submitResponse.ok) {
+            const orderResult = await submitResponse.json();
+            console.log('Unleashed order created:', orderResult);
+            
+            // Update success message with order details
+            document.getElementById('success-message').innerHTML = `
+              <div class="success-icon">✓</div>
+              <h2 style="color: #28a745; margin-bottom: 20px;">Session Complete!</h2>
+              <p style="margin-bottom: 15px; color: #6c757d;">Your restock data has been saved successfully.</p>
+              <div style="background: #e8f5e8; padding: 15px; border-radius: 6px; margin-bottom: 20px;">
+                <strong>Unleashed Order Created:</strong><br>
+                Order #${orderResult.orderNumber}<br>
+                ${orderResult.invoiceNumber ? `Invoice #${orderResult.invoiceNumber}<br>` : ''}
+                Total Value: $${orderResult.totalValue?.toFixed(2) || '0.00'}
+              </div>
+            `;
+          } else {
+            console.warn('Unleashed order creation failed, but session was saved');
+            const errorData = await submitResponse.json();
+            document.getElementById('success-message').innerHTML = `
+              <div class="success-icon">✓</div>
+              <h2 style="color: #28a745; margin-bottom: 20px;">Session Saved!</h2>
+              <p style="margin-bottom: 15px; color: #6c757d;">Your restock data has been saved successfully.</p>
+              <div style="background: #fff3cd; padding: 15px; border-radius: 6px; margin-bottom: 20px; border-left: 4px solid #ffc107;">
+                <strong>Note:</strong> Order submission to Unleashed failed: ${errorData.message || 'Unknown error'}<br>
+                Please contact support to manually process this order.
+              </div>
+            `;
+          }
+        } catch (submitError) {
+          console.warn('Unleashed submission failed:', submitError);
+          document.getElementById('success-message').innerHTML = `
+            <div class="success-icon">✓</div>
+            <h2 style="color: #28a745; margin-bottom: 20px;">Session Saved!</h2>
+            <p style="margin-bottom: 15px; color: #6c757d;">Your restock data has been saved successfully.</p>
+            <div style="background: #fff3cd; padding: 15px; border-radius: 6px; margin-bottom: 20px; border-left: 4px solid #ffc107;">
+              <strong>Note:</strong> Unable to connect to Unleashed for automatic ordering.<br>
+              Please contact support to manually process this order.
+            </div>
+          `;
+        }
+        
+        showView('success-view');
+        
+      } catch (error) {
+        alert('Error saving session: ' + error.message);
+      }
+    }
+
+    function newSession() {
+      state.selectedUser = '';
+      state.selectedVenue = '';
+      state.products = [];
+      state.quantities = {};
+      
+      document.getElementById('user-select').value = '';
+      document.getElementById('venue-select').value = '';
+      document.getElementById('start-btn').disabled = true;
+      
+      showView('setup-view');
+    }
+
+    // Start the application
+    window.addEventListener('load', init);
+  </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Preview Debug</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <style>
+    body {
+      font-family: monospace;
+      background: #1a1a1a;
+      color: #00ff00;
+      padding: 20px;
+      margin: 0;
+    }
+    .status { color: #00ff00; }
+    .error { color: #ff0000; }
+    .info { color: #ffff00; }
+    .section {
+      margin: 20px 0;
+      padding: 15px;
+      border: 1px solid #333;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>PREVIEW WINDOW DIAGNOSTIC</h1>
+  <div class="section">
+    <h2>Environment Check</h2>
+    <p class="status">✓ HTML Loading</p>
+    <p class="status">✓ CSS Styling Applied</p>
+    <p class="status">✓ JavaScript Enabled: <span id="js-status">Testing...</span></p>
+    <p>Timestamp: <span id="timestamp">Loading...</span></p>
+    <p>User Agent: <span id="user-agent">Loading...</span></p>
+  </div>
+  
+  <div class="section">
+    <h2>API Connectivity</h2>
+    <p>Health Check: <span id="health-status">Testing...</span></p>
+    <p>Users API: <span id="users-status">Testing...</span></p>
+    <p>Venues API: <span id="venues-status">Testing...</span></p>
+  </div>
+  
+  <div class="section">
+    <h2>Navigation Tests</h2>
+    <p><a href="/" style="color: #00ff00;">Main App</a></p>
+    <p><a href="/simple.html" style="color: #00ff00;">Simple Test</a></p>
+    <p><a href="/test-route" style="color: #00ff00;">Route Test</a></p>
+    <p><a href="/direct-test" style="color: #00ff00;">Direct Test</a></p>
+  </div>
+  
+  <div class="section">
+    <h2>Preview Window Specific Issues</h2>
+    <p id="iframe-test">Testing if running in iframe...</p>
+    <p id="referrer-test">Referrer check...</p>
+    <p id="origin-test">Origin check...</p>
+  </div>
+
+  <script>
+    // Basic functionality test
+    document.getElementById('js-status').textContent = 'Working';
+    document.getElementById('js-status').className = 'status';
+    
+    // Environment info
+    document.getElementById('timestamp').textContent = new Date().toLocaleString();
+    document.getElementById('user-agent').textContent = navigator.userAgent;
+    
+    // Check if in iframe (preview window)
+    if (window.self !== window.top) {
+      document.getElementById('iframe-test').innerHTML = '<span class="info">Running in iframe (Preview Window)</span>';
+    } else {
+      document.getElementById('iframe-test').innerHTML = '<span class="status">Running in main window</span>';
+    }
+    
+    // Check referrer
+    document.getElementById('referrer-test').textContent = 'Referrer: ' + (document.referrer || 'None');
+    
+    // Check origin
+    document.getElementById('origin-test').textContent = 'Origin: ' + window.location.origin;
+    
+    // Test APIs
+    async function testAPI(url, elementId) {
+      try {
+        const response = await fetch(url);
+        if (response.ok) {
+          document.getElementById(elementId).innerHTML = '<span class="status">✓ Working</span>';
+        } else {
+          document.getElementById(elementId).innerHTML = '<span class="error">✗ Error ' + response.status + '</span>';
+        }
+      } catch (error) {
+        document.getElementById(elementId).innerHTML = '<span class="error">✗ Failed: ' + error.message + '</span>';
+      }
+    }
+    
+    // Test all APIs
+    testAPI('/api/health', 'health-status');
+    testAPI('/api/users', 'users-status');
+    testAPI('/api/venues', 'venues-status');
+  </script>
+</body>
+</html>

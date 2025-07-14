@@ -1,0 +1,610 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Training Guide - Retail Restock</title>
+  <style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-size: 14px;
+  }
+  h1 {
+    color: #2563eb;
+    border-bottom: 3px solid #2563eb;
+    padding-bottom: 10px;
+    font-size: 28px;
+    margin-top: 0;
+  }
+  h2 {
+    color: #1d4ed8;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 5px;
+    margin-top: 30px;
+    font-size: 20px;
+    page-break-inside: avoid;
+  }
+  h3 {
+    color: #1e40af;
+    margin-top: 25px;
+    font-size: 16px;
+    page-break-inside: avoid;
+  }
+  h4 {
+    color: #3730a3;
+    margin-top: 20px;
+    font-size: 14px;
+  }
+  p {
+    margin: 10px 0;
+    text-align: justify;
+  }
+  ul, ol {
+    margin: 10px 0;
+    padding-left: 20px;
+  }
+  li {
+    margin: 5px 0;
+  }
+  strong {
+    color: #1f2937;
+  }
+  code {
+    background-color: #f3f4f6;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Monaco', 'Courier New', monospace;
+    font-size: 12px;
+    color: #dc2626;
+  }
+  pre {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 5px;
+    padding: 15px;
+    overflow-x: auto;
+    font-size: 12px;
+  }
+  blockquote {
+    border-left: 4px solid #2563eb;
+    margin: 15px 0;
+    padding-left: 15px;
+    color: #6b7280;
+    background-color: #f8fafc;
+    padding: 15px;
+    border-radius: 0 5px 5px 0;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 15px 0;
+    font-size: 12px;
+  }
+  th, td {
+    border: 1px solid #e5e7eb;
+    padding: 8px 12px;
+    text-align: left;
+  }
+  th {
+    background-color: #f9fafb;
+    font-weight: 600;
+    color: #374151;
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 40px;
+    border-bottom: 2px solid #2563eb;
+    padding-bottom: 20px;
+    page-break-inside: avoid;
+  }
+  .footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 12px;
+    color: #6b7280;
+    page-break-inside: avoid;
+  }
+  .toc {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    page-break-inside: avoid;
+  }
+  .toc h2 {
+    margin-top: 0;
+    color: #1e40af;
+    border-bottom: none;
+  }
+  .toc ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  .toc li {
+    margin: 8px 0;
+  }
+  .toc a {
+    text-decoration: none;
+    color: #2563eb;
+    padding: 5px 0;
+    display: block;
+  }
+  .toc a:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+  }
+  .print-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  .print-button:hover {
+    background-color: #1d4ed8;
+  }
+  
+  @media print {
+    body { 
+      font-size: 11px; 
+      margin: 0;
+      padding: 15px;
+    }
+    h1 { font-size: 20px; }
+    h2 { font-size: 16px; }
+    h3 { font-size: 14px; }
+    h4 { font-size: 12px; }
+    .print-button { display: none; }
+    .header { margin-bottom: 20px; }
+    .footer { margin-top: 20px; }
+    
+    /* Page break control */
+    h1, h2, h3 {
+      page-break-after: avoid;
+    }
+    
+    img {
+      max-width: 100% !important;
+      height: auto !important;
+    }
+    
+    /* Avoid breaking these elements */
+    blockquote, table, pre {
+      page-break-inside: avoid;
+    }
+    
+    /* Keep list items together */
+    li {
+      page-break-inside: avoid;
+    }
+  }
+  
+  @page {
+    margin: 20mm;
+    size: A4;
+  }
+</style>
+</head>
+<body>
+  <button class="print-button" onclick="window.print()">📄 Print/Save as PDF</button>
+  
+  <div class="header">
+    <h1>Training Guide</h1>
+    <p><strong>Retail Restock Application Documentation</strong></p>
+    <p>Generated: 23 June 2025</p>
+  </div>
+  
+  
+  
+  <div class="content">
+    <h1>Retail Restock Application Training Guide</h1>
+<h2>Table of Contents</h2>
+<ol>
+<li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#installing-the-app">Installing the App</a></li>
+<li><a href="#user-selection">User Selection</a></li>
+<li><a href="#venue-selection">Venue Selection</a></li>
+<li><a href="#product-inventory-management">Product Inventory Management</a></li>
+<li><a href="#weekly-sales-data">Weekly Sales Data</a></li>
+<li><a href="#items-to-order">Items to Order</a></li>
+<li><a href="#submitting-orders">Submitting Orders</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+<li><a href="#best-practices">Best Practices</a></li>
+</ol>
+<hr>
+<h2>Getting Started</h2>
+<h3>What is the Retail Restock Application?</h3>
+<p>The Retail Restock application is a mobile-optimised inventory management system designed specifically for our Australian retail venues. It helps team members efficiently track stock levels, record weekly sales, and submit restock orders directly to our Unleashed ERP system.</p>
+<h3>Key Features</h3>
+<ul>
+<li><strong>Mobile-friendly design</strong> - Works perfectly on phones and tablets</li>
+<li><strong>Real-time pricing</strong> - Displays current Shopify retail prices and wholesale ordering costs</li>
+<li><strong>Automatic calculations</strong> - Smart reorder suggestions based on par levels and current stock</li>
+<li><strong>Direct integration</strong> - Orders go straight to Unleashed for processing</li>
+<li><strong>Offline capability</strong> - Basic functions work even without internet</li>
+</ul>
+<hr>
+<h2>Installing the App</h2>
+<h3>For Mobile Devices (Recommended)</h3>
+<p><strong>Android Devices:</strong></p>
+<ol>
+<li>Open Chrome and navigate to the application URL</li>
+<li>Look for the &quot;Install Retail Restock&quot; banner at the bottom of the screen</li>
+<li>Tap &quot;Install&quot; to add the app to your home screen</li>
+<li>The app icon will appear on your home screen like any other app</li>
+</ol>
+<p><strong>iPhone/iPad:</strong></p>
+<ol>
+<li>Open Safari and navigate to the application URL</li>
+<li>Tap the Share button (square with up arrow)</li>
+<li>Scroll down and tap &quot;Add to Home Screen&quot;</li>
+<li>Tap &quot;Add&quot; to confirm</li>
+<li>The app will appear on your home screen</li>
+</ol>
+<p><strong>Desktop/Laptop:</strong></p>
+<ol>
+<li>Open Chrome or Edge browser</li>
+<li>Navigate to the application URL</li>
+<li>Look for the install icon in the address bar</li>
+<li>Click to install as a desktop app</li>
+</ol>
+<h3>Benefits of Installing</h3>
+<ul>
+<li><strong>Faster access</strong> - Launch directly from your home screen</li>
+<li><strong>Full-screen experience</strong> - No browser bars taking up space</li>
+<li><strong>Offline functionality</strong> - Continue working without internet</li>
+<li><strong>Native app feel</strong> - Smooth performance and gestures</li>
+</ul>
+<hr>
+<h2>User Selection</h2>
+<h3>How to Log In</h3>
+<ol>
+<li><strong>Select your name</strong> from the dropdown menu on the initial screen</li>
+<li><strong>Current team members</strong> include:<ul>
+<li>Keenan Curran</li>
+<li>Abbie Moore</li>
+<li>Aaron Leck</li>
+<li>James Thai</li>
+<li>Hayden Bryant</li>
+<li>Hannah Butkus</li>
+</ul>
+</li>
+</ol>
+<h3>Why User Selection Matters</h3>
+<ul>
+<li><strong>Accountability</strong> - Tracks who completed each restock session</li>
+<li><strong>Audit trail</strong> - Maintains records for inventory management</li>
+<li><strong>Personalisation</strong> - Future updates may include user-specific features</li>
+</ul>
+<hr>
+<h2>Venue Selection</h2>
+<h3>Available Venues</h3>
+<p>The system supports five retail locations across Queensland:</p>
+<ol>
+<li><strong>Bru Cru</strong> - Kenmore (2069 Moggill Rd, Kenmore QLD 4069)</li>
+<li><strong>All Sew</strong> - Carseldine (7/41 Graham Rd, Carseldine QLD 4034)</li>
+<li><strong>Golly Gosh</strong> - Yeronga (92 Hyde Rd, Yeronga QLD 4104)</li>
+<li><strong>Kenrose Bakery</strong> - Carina (4/18 Kenrose St, Carina QLD 4152)</li>
+<li><strong>Boiler Room</strong> - Brendale (3/193 South Pine Rd, Brendale QLD 4500)</li>
+</ol>
+<h3>Selecting Your Venue</h3>
+<ol>
+<li><strong>Choose the correct venue</strong> from the dropdown menu</li>
+<li><strong>Verify the address</strong> appears correctly</li>
+<li><strong>Click &quot;Continue&quot;</strong> to proceed to inventory</li>
+</ol>
+<h3>Important Notes</h3>
+<ul>
+<li>Each venue has different product ranges and par levels</li>
+<li>Pricing may vary between venues</li>
+<li>Customer billing is automatically handled per venue</li>
+</ul>
+<hr>
+<h2>Product Inventory Management</h2>
+<h3>Understanding Product Types</h3>
+<p><strong>Coffee Products (Returned Items):</strong></p>
+<ul>
+<li>Seasonal blends, individual roasts, and specialty coffee</li>
+<li>These items are <strong>returned</strong> if unsold (not consumed)</li>
+<li>Enter the quantity <strong>remaining on shelf</strong></li>
+</ul>
+<p><strong>Merchandise &amp; Consumables (Consumed Items):</strong></p>
+<ul>
+<li>Pods, instant coffee, matcha, drip coffee</li>
+<li>These items are <strong>consumed</strong> and not returned</li>
+<li>Enter the quantity <strong>sold during the week</strong></li>
+</ul>
+<h3>Product Information Display</h3>
+<p>Each product shows:</p>
+<ul>
+<li><strong>Product name</strong> and SKU code</li>
+<li><strong>Product type</strong> (Coffee Bean, Merchandise, etc.)</li>
+<li><strong>Par level</strong> - Target stock amount for this venue</li>
+<li><strong>Current quantity input field</strong></li>
+</ul>
+<h3>How to Enter Quantities</h3>
+<p><strong>For Coffee Beans (Returned Items):</strong></p>
+<ol>
+<li>Count physical stock remaining on shelf</li>
+<li>Enter this number in the quantity field</li>
+<li>System calculates how many were sold automatically</li>
+</ol>
+<p><strong>For Consumables (Consumed Items):</strong></p>
+<ol>
+<li>Count how many units were sold this week</li>
+<li>Enter the sold quantity in the field</li>
+<li>System calculates reorder requirements</li>
+</ol>
+<h3>Quantity Input Features</h3>
+<ul>
+<li><strong>Plus/minus buttons</strong> for easy adjustment</li>
+<li><strong>Direct number entry</strong> for quick input</li>
+<li><strong>Maximum validation</strong> prevents impossible quantities</li>
+<li><strong>Real-time calculations</strong> update as you type</li>
+</ul>
+<hr>
+<h2>Weekly Sales Data</h2>
+<h3>Understanding the Sales Section</h3>
+<p>The &quot;Weekly Items Sold&quot; section displays:</p>
+<ul>
+<li><strong>Product name</strong> and SKU code</li>
+<li><strong>Quantity sold</strong> (calculated automatically)</li>
+<li><strong>Shopify retail price</strong> per unit</li>
+<li><strong>Total sales value</strong> for the week</li>
+</ul>
+<h3>Pricing Information</h3>
+<ul>
+<li><strong>Shopify pricing</strong> reflects current retail prices</li>
+<li><strong>Green &quot;Shopify retail price applied&quot; badge</strong> confirms authentic pricing</li>
+<li><strong>Prices update automatically</strong> from our Unleashed system</li>
+</ul>
+<h3>What This Data Is Used For</h3>
+<ul>
+<li><strong>Sales performance tracking</strong> across venues</li>
+<li><strong>Product popularity analysis</strong> for inventory planning</li>
+<li><strong>Revenue reporting</strong> for management</li>
+<li><strong>Trend identification</strong> for seasonal adjustments</li>
+</ul>
+<hr>
+<h2>Items to Order</h2>
+<h3>Understanding Reorder Logic</h3>
+<p><strong>Automatic Calculations:</strong></p>
+<ul>
+<li>System compares current stock to par levels</li>
+<li>Suggests reorder quantities to reach optimal stock</li>
+<li>Uses wholesale pricing for accurate costings</li>
+</ul>
+<p><strong>Reorder Triggers:</strong></p>
+<ul>
+<li><strong>Below par level</strong> - Standard reorder suggestion</li>
+<li><strong>At reorder threshold</strong> - Urgent restock needed</li>
+<li><strong>Zero stock</strong> - Critical reorder required</li>
+</ul>
+<h3>Special Ordering Rules</h3>
+<p><strong>Cold Brew Concentrate:</strong></p>
+<ul>
+<li>Individual units (SKU 7081) trigger multi-pack orders</li>
+<li>When 1 or fewer individual units remain, system orders 4-pack (SKU 7084)</li>
+<li>Maintains proper inventory ratios automatically</li>
+</ul>
+<h3>Pricing Display</h3>
+<ul>
+<li><strong>WOLFF32 wholesale pricing</strong> for order calculations</li>
+<li><strong>Individual item costs</strong> and total order value</li>
+<li><strong>Green pricing badges</strong> confirm authentic wholesale rates</li>
+</ul>
+<h3>Review Before Ordering</h3>
+<ol>
+<li><strong>Check reorder quantities</strong> make sense for your venue</li>
+<li><strong>Verify products</strong> actually need restocking</li>
+<li><strong>Confirm pricing</strong> looks reasonable</li>
+<li><strong>Add comments</strong> if needed for special instructions</li>
+</ol>
+<hr>
+<h2>Submitting Orders</h2>
+<h3>Order Submission Process</h3>
+<ol>
+<li><strong>Review all sections</strong> - inventory, sales, and reorders</li>
+<li><strong>Add comments</strong> if needed (special instructions, urgent items, etc.)</li>
+<li><strong>Click &quot;Complete &amp; Submit Order&quot;</strong></li>
+<li><strong>Wait for confirmation</strong> - system processes with Unleashed</li>
+</ol>
+<h3>What Happens When You Submit</h3>
+<ul>
+<li><strong>Order created</strong> in Unleashed ERP system</li>
+<li><strong>Customer billing</strong> applied to correct venue account</li>
+<li><strong>Tax calculations</strong> handled automatically (10% GST)</li>
+<li><strong>Order number</strong> generated for tracking</li>
+<li><strong>Email notifications</strong> sent to relevant staff</li>
+</ul>
+<h3>Order Details Include</h3>
+<ul>
+<li><strong>RETAIL prefix</strong> order numbers for easy identification</li>
+<li><strong>Complete product list</strong> with SKUs and quantities</li>
+<li><strong>Pricing breakdown</strong> with tax calculations</li>
+<li><strong>Venue information</strong> for accurate delivery</li>
+<li><strong>Comments</strong> for any special requirements</li>
+</ul>
+<h3>Confirmation Information</h3>
+<ul>
+<li><strong>Order ID</strong> for reference</li>
+<li><strong>Order number</strong> for Unleashed tracking</li>
+<li><strong>Total value</strong> including GST</li>
+<li><strong>Invoice details</strong> if automatically generated</li>
+</ul>
+<hr>
+<h2>Troubleshooting</h2>
+<h3>Common Issues and Solutions</h3>
+<p><strong>&quot;Venue not linked&quot; Error:</strong></p>
+<ul>
+<li>Contact system administrator</li>
+<li>Venue may need customer code setup in Unleashed</li>
+<li>Temporary system issue - try again in a few minutes</li>
+</ul>
+<p><strong>&quot;Customer not found&quot; Error:</strong></p>
+<ul>
+<li>Usually resolves automatically with system retry</li>
+<li>Check your internet connection</li>
+<li>Contact support if persistent</li>
+</ul>
+<p><strong>Pricing Not Loading:</strong></p>
+<ul>
+<li>Ensure internet connection is stable</li>
+<li>Refresh the page and try again</li>
+<li>Some products may not have current pricing in Unleashed</li>
+</ul>
+<p><strong>App Won&#39;t Install:</strong></p>
+<ul>
+<li>Try different browser (Chrome recommended)</li>
+<li>Check device storage space</li>
+<li>Clear browser cache and try again</li>
+</ul>
+<p><strong>Order Submission Failed:</strong></p>
+<ul>
+<li>Check all required fields are completed</li>
+<li>Verify internet connection</li>
+<li>Try submitting again after a few minutes</li>
+<li>Contact support with error message details</li>
+</ul>
+<h3>When to Contact Support</h3>
+<ul>
+<li><strong>System errors</strong> that prevent order completion</li>
+<li><strong>Pricing discrepancies</strong> that seem incorrect</li>
+<li><strong>Missing venues</strong> or products</li>
+<li><strong>Login issues</strong> with user accounts</li>
+<li><strong>Persistent technical problems</strong></li>
+</ul>
+<hr>
+<h2>Best Practices</h2>
+<h3>Before Starting a Restock Session</h3>
+<ul>
+<li><strong>Ensure good internet connection</strong> for real-time pricing</li>
+<li><strong>Have physical stock counts ready</strong> before entering data</li>
+<li><strong>Check for any urgent restock needs</strong> first</li>
+<li><strong>Note any damaged or expired products</strong> separately</li>
+</ul>
+<h3>During Inventory Counting</h3>
+<ul>
+<li><strong>Count carefully</strong> - accuracy is crucial for proper ordering</li>
+<li><strong>Double-check high-value items</strong> like specialty coffee</li>
+<li><strong>Note any product quality issues</strong> in comments</li>
+<li><strong>Take photos</strong> of damaged stock if needed</li>
+</ul>
+<h3>Data Entry Tips</h3>
+<ul>
+<li><strong>Work systematically</strong> through each product</li>
+<li><strong>Use plus/minus buttons</strong> for precise quantities</li>
+<li><strong>Double-check entries</strong> before moving to next product</li>
+<li><strong>Save progress</strong> by staying on the same page</li>
+</ul>
+<h3>Order Review</h3>
+<ul>
+<li><strong>Verify reorder quantities</strong> make sense for your venue</li>
+<li><strong>Check for duplicate orders</strong> from earlier in the week</li>
+<li><strong>Add useful comments</strong> for warehouse staff</li>
+<li><strong>Confirm urgent items</strong> are marked appropriately</li>
+</ul>
+<h3>After Submission</h3>
+<ul>
+<li><strong>Save order confirmation</strong> details</li>
+<li><strong>Communicate urgent needs</strong> to relevant staff</li>
+<li><strong>Monitor delivery</strong> for any missing items</li>
+<li><strong>Report any discrepancies</strong> promptly</li>
+</ul>
+<h3>Weekly Routine Suggestions</h3>
+<ul>
+<li><strong>Monday morning</strong> - Check weekend sales and urgent needs</li>
+<li><strong>Mid-week</strong> - Complete full inventory and submit orders</li>
+<li><strong>Friday</strong> - Review incoming deliveries and weekend prep</li>
+<li><strong>Monthly</strong> - Review par levels and ordering patterns</li>
+</ul>
+<hr>
+<h2>Security and Data Management</h2>
+<h3>Data Protection</h3>
+<ul>
+<li><strong>No personal information</strong> stored beyond user names</li>
+<li><strong>Secure connections</strong> to Unleashed system</li>
+<li><strong>Automatic logout</strong> after periods of inactivity</li>
+<li><strong>Regular system backups</strong> maintained</li>
+</ul>
+<h3>Privacy Considerations</h3>
+<ul>
+<li><strong>Sales data</strong> remains confidential within the organisation</li>
+<li><strong>Inventory levels</strong> not shared with external parties</li>
+<li><strong>User activity</strong> logged for accountability only</li>
+<li><strong>No tracking</strong> of personal device information</li>
+</ul>
+<h3>System Updates</h3>
+<ul>
+<li><strong>Automatic updates</strong> delivered through web interface</li>
+<li><strong>No app store updates</strong> required</li>
+<li><strong>New features</strong> available immediately upon release</li>
+<li><strong>Training notifications</strong> for significant changes</li>
+</ul>
+<hr>
+<h2>Additional Resources</h2>
+<h3>Quick Reference Card</h3>
+<p>Print and keep handy:</p>
+<ul>
+<li><strong>User selection</strong> - Choose your name from dropdown</li>
+<li><strong>Venue selection</strong> - Pick your location</li>
+<li><strong>Inventory counting</strong> - Remaining stock for coffee, sold quantities for consumables</li>
+<li><strong>Order submission</strong> - Review, comment, and submit</li>
+</ul>
+<h3>Training Support</h3>
+<ul>
+<li><strong>Initial training sessions</strong> available upon request</li>
+<li><strong>One-on-one support</strong> for complex venues</li>
+<li><strong>Group workshops</strong> for team updates</li>
+<li><strong>Video tutorials</strong> for visual learners</li>
+</ul>
+<h3>Contact Information</h3>
+<p>For technical support or training questions:</p>
+<ul>
+<li><strong>System Administrator</strong> - [Contact details to be provided]</li>
+<li><strong>Inventory Manager</strong> - [Contact details to be provided]</li>
+<li><strong>IT Support</strong> - [Contact details to be provided]</li>
+</ul>
+<hr>
+<p><em>This guide was last updated: June 2025</em><br><em>Application version: Current production release</em><br><em>For the latest updates and features, always refer to the live application</em></p>
+
+  </div>
+  
+  <div class="footer">
+    <p><strong>Retail Restock System Documentation</strong></p>
+    <p>© 2025 | For internal use only | Generated from Markdown sources</p>
+    <p><em>To save as PDF: Use your browser's Print function and select "Save as PDF"</em></p>
+  </div>
+  
+  <script>
+    // Auto-print functionality for easy PDF generation
+    function printDocument() {
+      window.print();
+    }
+    
+    // Add keyboard shortcut for printing
+    document.addEventListener('keydown', function(e) {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+        e.preventDefault();
+        printDocument();
+      }
+    });
+  </script>
+</body>
+</html>
